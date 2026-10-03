@@ -1,0 +1,7 @@
+rm -rf output.txt
+rm -rf libprocess.so
+rm -rf app_static
+rm -rf src/utils.o
+rm -rf src/process.o
+rm -rf src/main_static.o
+rm -f libprocess.a
