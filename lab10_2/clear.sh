@@ -5,3 +5,6 @@ rm -rf src/utils.o
 rm -rf src/process.o
 rm -rf src/main_static.o
 rm -f libprocess.a
+rm -f app_shared
+rm -f src/process_pic.o
+rm -f src/main_shared.o
