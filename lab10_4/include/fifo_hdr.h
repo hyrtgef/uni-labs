@@ -11,6 +11,7 @@ typedef struct
 {
     size_t in_len;
     long limit; 
+    long count;
     char data[BUF_SIZE];
 }fifo_msg_t;
 
