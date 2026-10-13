@@ -31,7 +31,7 @@ int Open(const char *pathname, int flag, ...)
     fd = open(pathname, flag, mode);
     if (fd == -1)
     {
-        fprintf(stderr, "Ошибка открытия файла '%S' : '%S'", pathname, strerror(errno));
+        fprintf(stderr, "Ошибка открытия файла '%s' : '%s'", pathname, strerror(errno));
         exit(1);
     }
     return fd;
@@ -56,7 +56,7 @@ ssize_t Write(int fd, const void *buf, size_t count)
     return n;
 }
 
-ssize_t Read(int fd, const void *buf, size_t count)
+ssize_t Read(int fd, void *buf, size_t count)
 {
     ssize_t n;
 

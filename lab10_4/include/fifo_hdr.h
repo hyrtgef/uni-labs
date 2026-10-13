@@ -5,7 +5,7 @@
 #include "utils.h"
 
 #define REQ_FIFO "/tmp/process_req_fifo" // канал для запросов клиент сервер
-#define REQ_FIFO "tmp/process_res_fifo" // канал для запросов сервер клиент
+#define RES_FIFO "/tmp/process_res_fifo" // канал для запросов сервер клиент
 
 typedef struct 
 {
