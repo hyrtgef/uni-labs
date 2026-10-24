@@ -1,5 +1,7 @@
 /build
-/dynamiclib
+/lib
+/bin
 .vscode/
 
 *.log
+*.so

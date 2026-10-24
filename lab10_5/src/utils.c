@@ -35,6 +35,7 @@ int Open(const char *pathname, int flags, ...)
     if (fd == -1)
     {
         fprintf(stderr, "Ошибка открытия файла '%s': %s\n", pathname, strerror(errno));
+        exit(EXIT_FAILURE);
     }
 
     return fd;
@@ -62,7 +63,7 @@ ssize_t Read(int fd, void *buf, size_t count)
 {
     if (buf == NULL)
     {
-        fprintf(stderr, "Ошибка буффер пуст\n");
+        fprintf(stderr, "Ошибка буфер пуст\n");
         exit(EXIT_FAILURE);
     }
 
@@ -129,7 +130,7 @@ mqd_t Mq_open(const char *name, int oflag, mode_t mode, struct mq_attr *attr)
     return md;
 }
 
-int Mq_send(mqd_t mqdes, const char *msg_ptr, size_t msg_len, unsigned int msg_prio)
+int Mq_send(mqd_t mqdes, const void *msg_ptr, size_t msg_len, unsigned int msg_prio)
 {
     int mqs = mq_send(mqdes, msg_ptr, msg_len, msg_prio);
 
@@ -154,7 +155,7 @@ ssize_t Mq_receive(mqd_t mqdes, void *msg_ptr, size_t msg_len, unsigned int *msg
 
 int Mq_close(mqd_t mqdes)
 {
-    if(mq_close(mqdes) == (mqd_t)-1)
+    if(mq_close(mqdes) == -1)
     {
         fprintf(stderr, "Ошибка mq_close: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
@@ -166,6 +167,11 @@ int Mq_unlink(const char *name)
 {
     if(mq_unlink(name) == -1)
     {
+        if(errno == ENOENT)
+        {
+            return 0;
+        }
+
         fprintf(stderr, "Ошибка mq_unlink: %s\n", strerror(errno));
         exit(EXIT_FAILURE);
     }
